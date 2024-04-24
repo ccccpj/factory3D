@@ -48,7 +48,7 @@ const Area: React.FC<IAreaProps> = ({
       new THREE.Vector3(x, (y + textHeight!) / 2, z),
       new THREE.Vector3(width, textHeight, height)
     );
-    controls.fitToBox(box, true);
+    controls?.fitToBox(box, true);
 
     annotationRef.current?.show();
   };

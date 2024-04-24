@@ -1,5 +1,4 @@
-import { useEffect, useRef, useMemo } from 'react';
-import { useFBX } from '@react-three/drei';
+import { useRef, useMemo } from 'react';
 import Stats from 'three/examples/jsm/libs/stats.module';
 import { useFrame } from '@react-three/fiber';
 import React, { useState } from 'react';
@@ -11,7 +10,6 @@ import Goods from './goods';
 import FourWayCar from './fourWayCar';
 import MxwCar from './mxwCar';
 import ForkTruck from './forkTruck';
-import Ground from './Ground';
 import { observer } from 'mobx-threejs-store';
 import Tunnel from './tunnel';
 import Area from './area';
@@ -26,7 +24,6 @@ import animationData from '../data/animation';
 import tunnelData from '../data/tunnel';
 import areaData from '../data/area';
 import ConveyerBelt from './conveyerBelt';
-import conveyerBeltData from '../data/conveyerBelt';
 
 let index = 0;
 let cntTime = 0;

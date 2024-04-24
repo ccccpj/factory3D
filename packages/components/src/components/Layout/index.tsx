@@ -1,34 +1,16 @@
 import React from 'react';
-import {
-  DashboardOutlined,
-  GithubFilled,
-  InfoCircleFilled,
-  LoginOutlined,
-  PlusCircleFilled,
-  QuestionCircleFilled,
-  SearchOutlined,
-} from '@ant-design/icons';
-import { ProBreadcrumb, ProConfigProvider, ProSettings } from '@ant-design/pro-components';
+import { DashboardOutlined, InfoCircleFilled, QuestionCircleFilled } from '@ant-design/icons';
+import { ProConfigProvider, ProSettings } from '@ant-design/pro-components';
 import ProLayout from '@ant-design/pro-layout';
-import { Input, Switch, Tooltip } from 'antd';
 import ErrorBoundary from 'antd/es/alert/ErrorBoundary';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Settings } from 'utils';
 
-import {
-  AuthContext,
-  useAppDispatch,
-  useAppSelector,
-  KeepAlive,
-  useLocationListen,
-  shallowEqual,
-} from 'hooks';
-import { getOperatingSystem, treeRouter } from 'utils';
-import Logo from '../../assets/logo.png';
+import { useAppSelector, KeepAlive, useLocationListen, shallowEqual } from 'hooks';
+import { getOperatingSystem } from 'utils';
 
 import { Settings as layoutSetting } from '../../config/defaultSetting';
-// import { baseRouterList } from "@/routes";
 
 export const baseRouterList = [
   {
@@ -44,14 +26,11 @@ export default () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [pathname, setPathname] = useState(location.pathname);
-  const dispatch = useAppDispatch();
-  const { signOut } = useContext(AuthContext);
   const [dark, setDark] = useState(
     getOperatingSystem() === 'mac' && window.matchMedia('(prefers-color-scheme: dark)').matches
   );
 
   useLocationListen((listener) => {
-    // console.log(listener, "listener");
     setPathname(listener.pathname);
   });
 
@@ -83,76 +62,17 @@ export default () => {
       >
         <ProLayout
           siderWidth={245}
-          logo={<img src={Logo} alt="logo" style={{ width: '60px', height: '20px' }} />}
-          // className="h-full"
+          logo={null}
           style={{
             height: '100vh',
           }}
           ErrorBoundary={false}
-          route={{
-            path: '/',
-            routes: treeRouter([...baseRouterList, ...user.menu]),
-          }}
+          route={{}}
           {...settings}
           location={{
             pathname,
           }}
-          waterMarkProps={{
-            content: Settings.title,
-          }}
-          avatarProps={{
-            src: Settings.logo,
-            size: 'small',
-            title: <div>{(user.token as unknown as { username: string })?.username}</div>,
-          }}
-          // headerContentRender={() => <ProBreadcrumb />}
-          // actionsRender={(props) => {
-          //   if (props.isMobile) return [];
-          //   return [
-          //     props.layout !== 'side' && document.body.clientWidth > 1400 ? (
-          //       <div
-          //         key="SearchOutlined"
-          //         aria-hidden
-          //         style={{
-          //           display: 'flex',
-          //           alignItems: 'center',
-          //           marginInlineEnd: 24,
-          //         }}
-          //         onMouseDown={(e) => {
-          //           e.stopPropagation();
-          //           e.preventDefault();
-          //         }}
-          //       >
-          //         <Input
-          //           style={{
-          //             borderRadius: 4,
-          //             marginInlineEnd: 12,
-          //             backgroundColor: 'rgba(57,62,67,1)',
-          //             color: '#fff',
-          //           }}
-          //           prefix={
-          //             <SearchOutlined
-          //               style={{
-          //                 color: '#dfdfdf',
-          //               }}
-          //             />
-          //           }
-          //           placeholder="搜索方案"
-          //           bordered={false}
-          //         />
-          //         <PlusCircleFilled
-          //           style={{
-          //             color: 'var(--ant-primary-color)',
-          //             fontSize: 24,
-          //           }}
-          //         />
-          //       </div>
-          //     ) : undefined,
-          //     <InfoCircleFilled key="InfoCircleFilled" />,
-          //     <QuestionCircleFilled key="QuestionCircleFilled" />,
-          //     <GithubFilled key="GithubFilled" />,
-          //   ];
-          // }}
+          appList={[]}
           menuFooterRender={(props) => {
             if (props?.collapsed || props?.isMobile) return undefined;
             return (
@@ -165,14 +85,6 @@ export default () => {
               >
                 <QuestionCircleFilled key="QuestionCircleFilled" />
                 <InfoCircleFilled key="InfoCircleFilled" />
-                {/* <Tooltip placement="bottom" title={'Switch topic'}>
-                  <Switch
-                    checkedChildren="🌜"
-                    unCheckedChildren="🌞"
-                    checked={dark}
-                    onChange={(v) => setDark(v)}
-                  />
-                </Tooltip> */}
               </div>
             );
           }}

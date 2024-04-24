@@ -6,7 +6,7 @@ export const initalValues = {
   cameraStatus: false,
   // cameraCtrls对象类型
   cameraCtrls: {
-    choiceCtrls: '1',
+    choiceCtrls: '0',
     autoCruise: false,
   },
 };

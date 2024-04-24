@@ -13,7 +13,8 @@ import Login from '@/pages/login';
 
 const Permissions = ({ children }: any) => {
   const token = getStorage(TOKEN);
-  return token ? children : <Navigate to="/login" />;
+  // return token ? children : <Navigate to="/login" />;
+  return children;
 };
 
 export const baseRouterList = [

@@ -177,7 +177,6 @@ const Buffer: React.FC = () => {
               color: '#fff',
             },
             formatter: function (a) {
-              console.log(a);
               return option3_Ydata[a.dataIndex];
             },
           },
