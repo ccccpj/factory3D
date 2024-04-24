@@ -100,13 +100,6 @@ export default () => {
           waterMarkProps={{
             content: Settings.title,
           }}
-          appList={[
-            {
-              icon: Settings.logo,
-              title: 'WMS',
-              desc: 'WMS系统',
-            },
-          ]}
           avatarProps={{
             src: Settings.logo,
             size: 'small',

@@ -349,16 +349,8 @@ const House = (props: IHouse) => {
     return <meshBasicMaterial map={roadTexture}></meshBasicMaterial>;
   };
 
-  const GrassMaterial = () => {
-    return <meshBasicMaterial map={grassTexture}></meshBasicMaterial>;
-  };
-
   const SurfaceMaterial = () => {
     return <meshBasicMaterial map={surfaceTexture}></meshBasicMaterial>;
-  };
-
-  const CrossMaterial = () => {
-    return <meshBasicMaterial map={crossTexture}></meshBasicMaterial>;
   };
 
   const OutSideSurface = (props: any) => {
@@ -366,46 +358,7 @@ const House = (props: IHouse) => {
       <group rotation={[0, props.rotation, 0]}>
         {/* 第一个道路 */}
         <mesh rotation={[Math.PI / 2, 0, 0]}>
-          <Geometry>
-            <Base position={[0, road_width / 2, 0]}>
-              <boxGeometry args={[props.length * 2, road_width, 10]} />
-            </Base>
-            <Addition position={[0, -road_width / 2, 0]}>
-              <boxGeometry args={[props.length * 2, road_width, 10]} />
-            </Addition>
-            <Subtraction position={[0, 0, 0]}>
-              <boxGeometry args={props.subArgs} />
-            </Subtraction>
-          </Geometry>
           <RoadMaterial></RoadMaterial>
-        </mesh>
-        <mesh rotation={[Math.PI / 2, 0, 0]}>
-          <Geometry>
-            <Base position={[0, road_width + grass_width / 2, 0]}>
-              <boxGeometry args={[props.length * 2, grass_width, 10]} />
-            </Base>
-            <Addition position={[0, -(road_width + grass_width / 2), 0]}>
-              <boxGeometry args={[props.length * 2, grass_width, 10]} />
-            </Addition>
-            <Subtraction position={[0, 0, 0]}>
-              <boxGeometry args={props.subArgs} />
-            </Subtraction>
-          </Geometry>
-          <GrassMaterial></GrassMaterial>
-        </mesh>
-        <mesh rotation={[Math.PI / 2, 0, 0]}>
-          <Geometry>
-            <Base position={[0, road_width + grass_width + cross_width / 2, 0]}>
-              <boxGeometry args={[props.length * 2, cross_width, 10]} />
-            </Base>
-            <Addition position={[0, -(road_width + grass_width + cross_width / 2), 0]}>
-              <boxGeometry args={[props.length * 2, cross_width, 10]} />
-            </Addition>
-            <Subtraction position={[0, 0, 0]}>
-              <boxGeometry args={props.subArgs} />
-            </Subtraction>
-          </Geometry>
-          <CrossMaterial></CrossMaterial>
         </mesh>
       </group>
     );
